@@ -36,6 +36,24 @@ array[8] = new Player("Saquon Barkley", "RB", "13", "NYG");
 array[9] = new Player("Jonathan Taylor", "RB", "11", "IND");
 array[10] = new Player("Stefon Diggs", "WR", "13", "BUF");
 array[11] = new Player("Nick Chubb", "RB", "5", "CLE");
+array[12] = new Player("Ceedee Lamb", "WR", "7", "DAL");
+array[13] = new Player("Davante Adams", "WR", "13", "LV");
+array[14] = new Player("AJ Brown", "WR", "10", "PHI");
+array[15] = new Player("Amon-Ra St. Brown", "WR", "9", "DET");
+array[16] = new Player("Garrett Wilson", "WR", "7", "NYJ");
+array[17] = new Player("Tony Pollard", "RB", "7", "DAL");
+array[18] = new Player("Jaylen Waddle", "WR", "10", "MIA");
+array[19] = new Player("Chris Olave", "WR", "11", "NO");
+array[20] = new Player("Derrick Henry", "RB", "7", "TEN");
+array[21] = new Player("Rhamondre Stevenson", "RB", "11", "NE");
+array[22] = new Player("DeVonta Smith", "WR", "10", "PHI");
+array[23] = new Player("Josh Jacobs", "RB", "13", "LV");
+array[24] = new Player("Tee Higgins", "WR", "7", "CIN");
+array[25] = new Player("Patrick Mahomes", "QB", "10", "KC");
+array[26] = new Player("Josh Allen", "QB", "13", "BUF");
+array[27] = new Player("DK Metcalf", "WR", "5", "SEA");
+array[28] = new Player("Jalen Hurts", "QB", "10", "PHI");
+array[29] = new Player("Jahmyr Gibbs", "RB", "9", "DET");
 
 let str = "";
 let isBetter = 0;
@@ -44,21 +62,10 @@ let onMain = true;
 let n = array.length;
 i = 1;
 
-
-let array2 = [];
-array2[0] = 3;
-array2[1] = 4;
-array2[2] = 1;
-array2[3] = 5;
-array2[4] = 2;
-array2[5] = 6;
-array2[6] = 0;
 let button1 = document.getElementById("fakeButtonOne");
 let button2 = document.getElementById("fakeButtonTwo");
 document.getElementById("fakeButtonOne").onclick = function(){helperSort(array, false)};
 document.getElementById("fakeButtonTwo").onclick = function(){helperSort(array, true)};
-//button1.onclick = helperSort(array, true);
-//button2.onclick = helperSort(array, false);
 
 function pickBetter(x){
     isBetter = x;
@@ -75,40 +82,18 @@ function updateCards(x, y){
     document.getElementById("byeTwo").innerHTML = "Bye Week: " + y.getByeWeek;
 }
 
-function insertionSort(array, betterPlayer)
-{
-    let n = array.length
-    let i, key, j;
-    //for(i=1;i<n;i++){
-        key = array[i];
-        j = i-1;
-        let isBetter = (prompt(`Which player is better? Enter '1' for ${array2[i]} or '2' for ${array2[j]}:`)== '1');
-        console.log(isBetter);
-        //while(j >= 0 && (isBetter))
-        //{
-            array[j+1] = array[j];
-            j = j-1;
-            if(j>=0)
-                isBetter = (prompt(`Which player is better? Enter '1' for ${array2[i]} or '2' for ${array2[j]}:`)== '1');
-        //}
-        array[j+1] = key;
-        
-    //}
-}
 
 function mainSort(array){
     if(i==n)
         endSort();
     key = array[i];
     j = i-1;
-    console.log(j);
-    console.log(array[j].getName);
     if(j>=0 && i<n)
         updateCards(array[j], key);
 }
 function helperSort(array, draftFirst)
 {
-    console.log("hi");
+    console.log(array);
     if(j<0 || !draftFirst)
     {
         array[j+1] = key;
@@ -120,7 +105,6 @@ function helperSort(array, draftFirst)
         j = j-1;
         if(j>=0)
             updateCards(array[j], key);
-        arrayPrint();
     }
 }
 
@@ -129,22 +113,15 @@ function endSort(){
     button1.onclick = null;
     button2.onclick = null;
     arrayPrint();
-    document.getElementById("change-this").innerHTML = str;
-    document.getElementById("change-this").size = 8;
+    sessionStorage.setItem('resultArray', JSON.stringify(array));
+    window.location.href='results.html';
 
 }
 
 function arrayPrint(){
-    str = "";
-    array.forEach(element => {
-        str+= element.getName + ", "
-        //console.log(element.getName);
-    });
-}
-function betterPlayer(player1, player2)
-{
-    //updateCards(player1, player2);
-    let choice = prompt(`Which player is better? Enter '1' for ${array2[player1]} or '2' for ${array2[player2]}:`);
-        return choice === '1';
+    for(let i = 0;i<array.length;i++)
+    {
+        array[i] = array[i].getName;
+    }
 }
 mainSort(array);
