@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+<body>
+    <link rel = "stylesheet" href = "styles.css">
+    <div class="title">
+        <h1>
+            2023 NFL Draft Board
+        </h1>
+        <h2 id = "change-this">
+            Your Top 30 Players.
+        </h2>
+    </div>
+    <div class="playerResults">
+        <div class="colOne">
+            <ol id="listOne">
+            </ol>
+        </div>
+        <div class="colTwo">
+            <ol start = "11" id="listTwo">
+            </ol>
+        </div>
+        <div class="colThree">
+            <ol start = "21" id="listThree">
+            </ol>
+        </div>
+    </div>
+    <script>
+        
+        let sessionString = sessionStorage.getItem('resultArray');
+        let resultArray = JSON.parse(sessionString);
+        console.log(resultArray);
+        let list1 = document.getElementById("listOne");
+        for (i = 0; i < 10; ++i) {
+            let li = document.createElement('li');
+            li.innerText = resultArray[i];
+            list1.appendChild(li);
+            li.addEventListener('click', function(){
+                if(this.classList.contains('active')){
+                    this.classList.remove("active");
+                } else {
+                    this.classList.add("active");
+                }
+            })
+        }
+        let list2 = document.getElementById("listTwo");
+        for (i = 10; i < 20; ++i) {
+            let li = document.createElement('li');
+            li.innerText = resultArray[i];
+            list2.appendChild(li);
+            li.addEventListener('click', function(){
+                if(this.classList.contains('active')){
+                    this.classList.remove("active");
+                } else {
+                    this.classList.add("active");
+                }
+            })
+        }
+
+        let list3 = document.getElementById("listThree");
+        for (i = 20; i < 30; ++i) {
+            let li = document.createElement('li');
+            li.innerText = resultArray[i];
+            list3.appendChild(li);
+            li.addEventListener('click', function(){
+                if(this.classList.contains('active')){
+                    this.classList.remove("active");
+                } else {
+                    this.classList.add("active");
+                }
+            })
+        }
+
+    </script>
+</body>
+</html>
